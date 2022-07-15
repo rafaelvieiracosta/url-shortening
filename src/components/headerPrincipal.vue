@@ -1,6 +1,6 @@
 <template>
   <header>
-    <div class="header_div container open">
+    <div class="header_div container">
       <img src="../assets/logo.svg" alt="Shortly" />
       <div class="header_mobile" @click="toggleMenuMobile">
         <span></span>

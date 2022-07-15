@@ -2,16 +2,19 @@
   <div id="app">
 
     <header-principal />
+    <banner-principal />
     
   </div>
 </template>
 
 <script>
 import headerPrincipal from './components/headerPrincipal.vue'
+import bannerPrincipal from './components/bannerPrincipal.vue'
 
 export default {
   components: { 
-    headerPrincipal 
+    headerPrincipal,
+    bannerPrincipal 
   },
   name: 'App',
   data(){
@@ -41,6 +44,7 @@ a{
 }
 #app{
   padding: 0 24px;
+  overflow-x: hidden;
 }
 .container{
   max-width: 1110px;
