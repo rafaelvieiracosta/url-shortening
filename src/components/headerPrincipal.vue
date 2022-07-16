@@ -49,6 +49,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 18000;
 }
 .header_mobile {
   display: none;

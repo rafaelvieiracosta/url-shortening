@@ -82,9 +82,10 @@ export default {};
   }
   .main_banner{
     grid-row: 1;
-    width: 327px;
+    width: 200px;
   }
   .main_titulos{
+    margin-top: 32px;
     text-align: center;
   }
 }
