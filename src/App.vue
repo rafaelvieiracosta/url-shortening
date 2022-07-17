@@ -3,6 +3,7 @@
 
     <header-principal />
     <banner-principal />
+    <buscaResultado />
     
   </div>
 </template>
@@ -10,11 +11,13 @@
 <script>
 import headerPrincipal from './components/headerPrincipal.vue'
 import bannerPrincipal from './components/bannerPrincipal.vue'
+import buscaResultado from './components/buscaResultado.vue'
 
 export default {
   components: { 
     headerPrincipal,
-    bannerPrincipal 
+    bannerPrincipal,
+    buscaResultado
   },
   name: 'App',
   data(){
