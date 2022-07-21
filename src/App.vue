@@ -1,9 +1,10 @@
 <template>
   <div id="app">
 
-    <header-principal />
-    <banner-principal />
+    <headerPrincipal />
+    <bannerPrincipal />
     <buscaResultado />
+    <detalhesEstatisticas />
     
   </div>
 </template>
@@ -12,12 +13,14 @@
 import headerPrincipal from './components/headerPrincipal.vue'
 import bannerPrincipal from './components/bannerPrincipal.vue'
 import buscaResultado from './components/buscaResultado.vue'
+import detalhesEstatisticas from './components/detalhesEstatisticas.vue'
 
 export default {
   components: { 
     headerPrincipal,
     bannerPrincipal,
-    buscaResultado
+    buscaResultado,
+    detalhesEstatisticas
   },
   name: 'App',
   data(){
