@@ -5,6 +5,7 @@
     <bannerPrincipal />
     <buscaResultado />
     <detalhesEstatisticas />
+    <footerChamada />
     
   </div>
 </template>
@@ -14,13 +15,15 @@ import headerPrincipal from './components/headerPrincipal.vue'
 import bannerPrincipal from './components/bannerPrincipal.vue'
 import buscaResultado from './components/buscaResultado.vue'
 import detalhesEstatisticas from './components/detalhesEstatisticas.vue'
+import footerChamada from './components/footerChamada.vue'
 
 export default {
   components: { 
     headerPrincipal,
     bannerPrincipal,
     buscaResultado,
-    detalhesEstatisticas
+    detalhesEstatisticas,
+    footerChamada
   },
   name: 'App',
   data(){
