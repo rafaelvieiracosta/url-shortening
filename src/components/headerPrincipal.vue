@@ -38,6 +38,9 @@ export default {
 </script>
 
 <style>
+header {
+  padding: 0 20px;
+}
 .header_div {
   display: flex;
   gap: 44px;

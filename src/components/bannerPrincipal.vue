@@ -24,6 +24,10 @@ export default {};
 </script>
 
 <style>
+main {
+  padding: 0 20px;
+  margin-top: 30px;
+}
 .main_div {
   display: grid;
   grid-template-columns: 1fr 445px;
@@ -72,19 +76,19 @@ export default {};
     font-size: 18px;
     line-height: 30px;
   }
-  .main_titulos a{
+  .main_titulos a {
     margin-top: 30px;
   }
 }
-@media(max-width: 800px){
-  .main_div{
+@media (max-width: 800px) {
+  .main_div {
     grid-template-columns: 1fr;
   }
-  .main_banner{
+  .main_banner {
     grid-row: 1;
     width: 200px;
   }
-  .main_titulos{
+  .main_titulos {
     margin-top: 32px;
     text-align: center;
   }

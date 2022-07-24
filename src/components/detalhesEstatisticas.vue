@@ -61,7 +61,7 @@ export default {};
 <style>
 #detalhesEstatisticas {
   padding: 68px 20px 120px;
-  background: #f5f7fa;
+  background: #e6eaf0;
 }
 .detalhesEstatisticas_div > h2 {
   font-weight: 700;
@@ -110,6 +110,7 @@ export default {};
   line-height: 26px;
   letter-spacing: -0.035em;
   color: #474d59;
+  margin-top: 14px;
 }
 .caracteristicas_item:nth-child(1)::before,
 .caracteristicas_item:nth-child(2)::before {

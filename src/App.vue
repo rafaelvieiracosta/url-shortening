@@ -1,64 +1,58 @@
 <template>
   <div id="app">
-
     <headerPrincipal />
     <bannerPrincipal />
     <buscaResultado />
     <detalhesEstatisticas />
     <footerChamada />
-    
   </div>
 </template>
 
 <script>
-import headerPrincipal from './components/headerPrincipal.vue'
-import bannerPrincipal from './components/bannerPrincipal.vue'
-import buscaResultado from './components/buscaResultado.vue'
-import detalhesEstatisticas from './components/detalhesEstatisticas.vue'
-import footerChamada from './components/footerChamada.vue'
+import headerPrincipal from "./components/headerPrincipal.vue";
+import bannerPrincipal from "./components/bannerPrincipal.vue";
+import buscaResultado from "./components/buscaResultado.vue";
+import detalhesEstatisticas from "./components/detalhesEstatisticas.vue";
+import footerChamada from "./components/footerChamada.vue";
 
 export default {
-  components: { 
+  components: {
     headerPrincipal,
     bannerPrincipal,
     buscaResultado,
     detalhesEstatisticas,
-    footerChamada
+    footerChamada,
   },
-  name: 'App',
-  data(){
-    return{
-
-    }
-  }
-}
+  name: "App",
+  data() {
+    return {};
+  },
+};
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap");
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
-ul,li{
+ul,
+li {
   list-style-type: none;
 }
 
-a{
+a {
   text-decoration: none;
 }
-#app{
-  padding: 0 24px;
+#app {
   overflow-x: hidden;
 }
-.container{
+.container {
   max-width: 1110px;
   margin: 0 auto;
 }
-
-
 </style>

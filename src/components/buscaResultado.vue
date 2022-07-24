@@ -15,10 +15,17 @@
     <div class="resultadoBusca_div">
       <div class="resultadoBusca container">
         <div class="resultadoBusca_item">
-          <p>https://www.frontendmentor.io</p>
+          <p>https://www.frontendmentor.iohttps://www.frontendmentor.io</p>
           <div>
             <p>https://rel.ink/k4lKyk</p>
             <button>Copiar</button>
+          </div>
+        </div>
+        <div class="resultadoBusca_item">
+          <p>https://www.frontendmentor.io</p>
+          <div>
+            <p>https://rel.ink/k4lKyk</p>
+            <button>Copiar!</button>
           </div>
         </div>
         <div class="resultadoBusca_item">
@@ -44,7 +51,7 @@ export default {};
 .inputBusca_div {
   margin-top: 68px;
   padding: 0 20px;
-  background: linear-gradient(180deg, #fff 50%, #f5f7fa 50%);
+  background: linear-gradient(180deg, #fff 50%, #e6eaf0 50%);
 }
 .inputBusca {
   background: #363b47;
@@ -85,7 +92,7 @@ export default {};
   background: #47b5ff;
 }
 .resultadoBusca_div {
-  background: #f5f7fa;
+  background: #e6eaf0;
   padding: 0 20px;
   padding-bottom: 50px;
 }
@@ -100,17 +107,19 @@ export default {};
   align-items: center;
   font-weight: 500;
   font-size: 20px;
+  gap: 15px;
 }
 .resultadoBusca_item > p {
-  padding: 24px 0 20px;
+  padding: 16px 0;
   padding-left: 32px;
+  word-break: break-all;
 }
 .resultadoBusca_item div {
   display: flex;
   align-items: center;
   gap: 24px;
-  padding: 24px 0 20px;
-  padding-right: 32px;
+  padding: 16px 0;
+  padding-right: 26px;
 }
 .resultadoBusca_item div > p {
   color: #18a0fb;

@@ -71,7 +71,7 @@ export default {};
 <style>
 footer {
   background: #0b0c12;
-  padding-bottom: 72px;
+  padding-bottom: 64px;
 }
 .chamada {
   padding: 20px;
@@ -111,7 +111,7 @@ footer {
 }
 .infos_div {
   padding: 0 20px;
-  margin-top: 72px;
+  margin-top: 69px;
 }
 .infos_wrapper {
   display: flex;
@@ -124,17 +124,13 @@ footer {
   flex-wrap: wrap;
   gap: 78px;
 }
-.infos_nav {
-}
 .infos_nav ul {
-  margin-top: 22px;
+  margin-top: 21px;
 }
 .infos_nav p {
   color: #f5f7fa;
-
   font-weight: 700;
   font-size: 16px;
-  line-height: 32px;
   letter-spacing: -0.015em;
 }
 .infos_nav li + li {
