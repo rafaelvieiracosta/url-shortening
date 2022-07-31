@@ -28,25 +28,27 @@
         </button>
       </div>
     </div>
-    <div class="resultadoBusca_div">
-      <div class="resultadoBusca container">
-        <transition-group tag="div" class="listResponse">
-          <div
-            class="resultadoBusca_item"
-            v-for="(url, index) in urlHistory"
-            :key="index"
-          >
-            <p>{{ url.urlAfter }}</p>
-            <div>
-              <a :href="`https://${url.urlBefore}`" target="_blank">{{
-                url.urlBefore
-              }}</a>
-              <button @click="copyUrl">Copiar</button>
+    <transition>
+      <div class="resultadoBusca_div" v-if="urlHistory.length > 0">
+        <div class="resultadoBusca container">
+          <transition-group tag="div" class="listResponse">
+            <div
+              class="resultadoBusca_item"
+              v-for="(url, index) in urlHistory"
+              :key="index"
+            >
+              <p>{{ url.urlAfter }}</p>
+              <div>
+                <a :href="`https://${url.urlBefore}`" target="_blank">{{
+                  url.urlBefore
+                }}</a>
+                <button @click="copyUrl">Copiar</button>
+              </div>
             </div>
-          </div>
-        </transition-group>
+          </transition-group>
+        </div>
       </div>
-    </div>
+    </transition>
   </section>
 </template>
 
@@ -185,13 +187,9 @@ export default {
 .resultadoBusca_div {
   background: #e6eaf0;
   padding: 0 20px;
-  padding-bottom: 50px;
 }
 .resultadoBusca {
   padding-top: 24px;
-}
-.listResponse {
-  margin-bottom: 16px;
 }
 .resultadoBusca_item {
   background: #fff;

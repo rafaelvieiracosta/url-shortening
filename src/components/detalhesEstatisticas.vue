@@ -60,7 +60,7 @@ export default {};
 
 <style>
 #detalhesEstatisticas {
-  padding: 68px 20px 120px;
+  padding: 115px 20px 120px;
   background: #e6eaf0;
 }
 .detalhesEstatisticas_div > h2 {
