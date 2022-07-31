@@ -28,7 +28,7 @@
             <a :href="`https://${url.urlBefore}`" target="_blank">{{
               url.urlBefore
             }}</a>
-            <button>Copiar</button>
+            <button @click="copyUrl">Copiar</button>
           </div>
         </div>
 
@@ -38,7 +38,7 @@
             <a href="https://shrtco.de/Hvxdcp" target="_blank"
               >shrtco.de/Hvxdcp</a
             >
-            <button>Copiar!</button>
+            <button @click="copyUrl">Copiar!</button>
           </div>
         </div>
 
@@ -48,7 +48,7 @@
             <a href="https://shrtco.de/JLnLHY" target="_blank"
               >shrtco.de/JLnLHY</a
             >
-            <button>Copiar!</button>
+            <button @click="copyUrl">Copiar!</button>
           </div>
         </div>
         <div class="resultadoBusca_item">
@@ -57,7 +57,7 @@
             <a href="https://www.linkedin.com/company/frontend-mentor/"
               >shrtco.de/POdrLH</a
             >
-            <button>Copiar!</button>
+            <button @click="copyUrl">Copiar!</button>
           </div>
         </div>
       </div>
@@ -99,6 +99,19 @@ export default {
       const inputDiv = document.querySelector(".inputBusca-input");
       if (inputDiv.classList.contains("error"))
         inputDiv.classList.remove("error");
+    },
+    copyUrl(event) {
+      const aLink = event.target.parentElement.querySelector("a").innerText;
+
+      var copyTextarea = document.createElement("textarea");
+      copyTextarea.style.position = "fixed";
+      copyTextarea.style.opacity = "0";
+      copyTextarea.textContent = aLink;
+
+      document.body.appendChild(copyTextarea);
+      copyTextarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(copyTextarea);
     },
   },
 };
