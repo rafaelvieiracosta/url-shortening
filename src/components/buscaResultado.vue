@@ -13,24 +13,38 @@
           />
           <span>Por favor, adicione um link</span>
         </div>
-        <button @click="encurtarLink">Encurte!</button>
+        <button @click="encurtarLink" :disabled="loadingShow">
+          <transition mode="out-in">
+            <p v-if="!loadingShow">Encurte!</p>
+            <div class="divLoading" v-else>
+              <div class="lds-ellipsis">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+          </transition>
+        </button>
       </div>
     </div>
     <div class="resultadoBusca_div">
       <div class="resultadoBusca container">
-        <div
-          class="resultadoBusca_item"
-          v-for="(url, index) in urlHistory"
-          :key="index"
-        >
-          <p>{{ url.urlAfter }}</p>
-          <div>
-            <a :href="`https://${url.urlBefore}`" target="_blank">{{
-              url.urlBefore
-            }}</a>
-            <button @click="copyUrl">Copiar</button>
+        <transition-group tag="div" class="listResponse">
+          <div
+            class="resultadoBusca_item"
+            v-for="(url, index) in urlHistory"
+            :key="index"
+          >
+            <p>{{ url.urlAfter }}</p>
+            <div>
+              <a :href="`https://${url.urlBefore}`" target="_blank">{{
+                url.urlBefore
+              }}</a>
+              <button @click="copyUrl">Copiar</button>
+            </div>
           </div>
-        </div>
+        </transition-group>
 
         <div class="resultadoBusca_item">
           <p>https://www.frontendmentor.io</p>
@@ -71,6 +85,7 @@ export default {
     return {
       urlNormal: "",
       urlHistory: [],
+      loadingShow: false,
     };
   },
   methods: {
@@ -82,6 +97,7 @@ export default {
       const isUrl = regex.test(this.urlNormal);
 
       if (isUrl) {
+        this.loadingShow = true;
         fetch(`https://api.shrtco.de/v2/shorten?url=${this.urlNormal}`)
           .then((r) => r.json())
           .then((r) => {
@@ -89,6 +105,7 @@ export default {
               urlAfter: this.urlNormal,
               urlBefore: r.result.short_link,
             });
+            this.loadingShow = false;
           });
       } else {
         const inputDiv = document.querySelector(".inputBusca-input");
@@ -182,6 +199,14 @@ export default {
   background: #18a0fb;
   transition: 0.2s;
   cursor: pointer;
+  min-width: 175px;
+}
+.inputBusca button:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+.inputBusca button:disabled:hover {
+  background: #18a0fb;
 }
 .inputBusca button:hover {
   background: #47b5ff;
@@ -193,6 +218,9 @@ export default {
 }
 .resultadoBusca {
   padding-top: 24px;
+}
+.listResponse {
+  margin-bottom: 16px;
 }
 .resultadoBusca_item {
   background: #fff;
@@ -288,6 +316,76 @@ export default {
     font-size: 16px;
     padding: 8px 16px;
     min-width: 100px;
+  }
+}
+
+.v-leave-to,
+.v-enter {
+  opacity: 0;
+}
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.3s;
+}
+
+/* LOADING */
+.divLoading {
+  display: flex;
+  justify-content: center;
+}
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 30px;
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 10px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #fff;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
   }
 }
 </style>
