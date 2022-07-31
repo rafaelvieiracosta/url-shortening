@@ -2,14 +2,17 @@
   <section>
     <div class="inputBusca_div">
       <div class="inputBusca container">
-        <input
-          type="text"
-          name="link"
-          id="link"
-          placeholder="Encurte um link aqui"
-          v-model="urlNormal"
-        />
-        <span class="error">Por favor adicione um link</span>
+        <div class="inputBusca-input">
+          <input
+            type="text"
+            name="link"
+            id="link"
+            placeholder="Encurte um link aqui"
+            v-model="urlNormal"
+            @click="removeErrorStyle"
+          />
+          <span>Por favor, adicione um link</span>
+        </div>
         <button @click="encurtarLink">Encurte!</button>
       </div>
     </div>
@@ -22,7 +25,9 @@
         >
           <p>{{ url.urlAfter }}</p>
           <div>
-            <p>{{ url.urlBefore }}</p>
+            <a :href="`https://${url.urlBefore}`" target="_blank">{{
+              url.urlBefore
+            }}</a>
             <button>Copiar</button>
           </div>
         </div>
@@ -70,23 +75,36 @@ export default {
   },
   methods: {
     encurtarLink() {
-      fetch(`https://api.shrtco.de/v2/shorten?url=${this.urlNormal}`)
-        .then((r) => r.json())
-        .then((r) => {
-          this.urlHistory.unshift({
-            urlAfter: this.urlNormal,
-            urlBefore: r.result.short_link,
+      const regex =
+        // eslint-disable-next-line no-useless-escape
+        /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi;
+
+      const isUrl = regex.test(this.urlNormal);
+
+      if (isUrl) {
+        fetch(`https://api.shrtco.de/v2/shorten?url=${this.urlNormal}`)
+          .then((r) => r.json())
+          .then((r) => {
+            this.urlHistory.unshift({
+              urlAfter: this.urlNormal,
+              urlBefore: r.result.short_link,
+            });
           });
-        });
+      } else {
+        const inputDiv = document.querySelector(".inputBusca-input");
+        inputDiv.classList.add("error");
+      }
+    },
+    removeErrorStyle() {
+      const inputDiv = document.querySelector(".inputBusca-input");
+      if (inputDiv.classList.contains("error"))
+        inputDiv.classList.remove("error");
     },
   },
 };
 </script>
 
 <style>
-.error {
-  display: none;
-}
 .inputBusca_div {
   margin-top: 68px;
   padding: 0 20px;
@@ -103,8 +121,23 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
 }
-.inputBusca input {
+.inputBusca-input {
   flex: 1;
+  position: relative;
+}
+.inputBusca-input span {
+  display: none;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 0.015em;
+  color: #f46262;
+  position: absolute;
+  left: 0;
+  bottom: -30px;
+}
+.inputBusca input {
+  width: 100%;
   padding: 16px 30px 14px;
   border: 2px solid #fff;
   outline: none;
@@ -112,6 +145,16 @@ export default {
   font-weight: 500;
   font-size: 20px;
   transition: 0.2s;
+}
+.inputBusca-input.error input {
+  border: 2px solid #f46262;
+  color: #f46262;
+}
+.inputBusca-input.error input::placeholder {
+  color: #f46262;
+}
+.inputBusca-input.error span {
+  display: block;
 }
 .inputBusca input:focus {
   border-color: #18a0fb;
@@ -190,7 +233,10 @@ export default {
   .inputBusca {
     flex-wrap: wrap;
     gap: 30px;
-    padding: 24px;
+    padding: 34px;
+  }
+  .inputBusca-input span {
+    bottom: -23px;
   }
 }
 @media (max-width: 776px) {
