@@ -45,35 +45,6 @@
             </div>
           </div>
         </transition-group>
-
-        <div class="resultadoBusca_item">
-          <p>https://www.frontendmentor.io</p>
-          <div>
-            <a href="https://shrtco.de/Hvxdcp" target="_blank"
-              >shrtco.de/Hvxdcp</a
-            >
-            <button @click="copyUrl">Copiar!</button>
-          </div>
-        </div>
-
-        <div class="resultadoBusca_item">
-          <p>https://twitter.com/frontendmentor</p>
-          <div>
-            <a href="https://shrtco.de/JLnLHY" target="_blank"
-              >shrtco.de/JLnLHY</a
-            >
-            <button @click="copyUrl">Copiar!</button>
-          </div>
-        </div>
-        <div class="resultadoBusca_item">
-          <p>https://www.linkedin.com/company/frontend-mentor/</p>
-          <div>
-            <a href="https://www.linkedin.com/company/frontend-mentor/"
-              >shrtco.de/POdrLH</a
-            >
-            <button @click="copyUrl">Copiar!</button>
-          </div>
-        </div>
       </div>
     </div>
   </section>
