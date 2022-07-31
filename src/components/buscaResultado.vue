@@ -7,31 +7,51 @@
           name="link"
           id="link"
           placeholder="Encurte um link aqui"
+          v-model="urlNormal"
         />
         <span class="error">Por favor adicione um link</span>
-        <button>Encurte!</button>
+        <button @click="encurtarLink">Encurte!</button>
       </div>
     </div>
     <div class="resultadoBusca_div">
       <div class="resultadoBusca container">
-        <div class="resultadoBusca_item">
-          <p>https://www.frontendmentor.iohttps://www.frontendmentor.io</p>
+        <div
+          class="resultadoBusca_item"
+          v-for="(url, index) in urlHistory"
+          :key="index"
+        >
+          <p>{{ url.urlAfter }}</p>
           <div>
-            <p>https://rel.ink/k4lKyk</p>
+            <p>{{ url.urlBefore }}</p>
             <button>Copiar</button>
           </div>
         </div>
+
         <div class="resultadoBusca_item">
           <p>https://www.frontendmentor.io</p>
           <div>
-            <p>https://rel.ink/k4lKyk</p>
+            <a href="https://shrtco.de/Hvxdcp" target="_blank"
+              >shrtco.de/Hvxdcp</a
+            >
+            <button>Copiar!</button>
+          </div>
+        </div>
+
+        <div class="resultadoBusca_item">
+          <p>https://twitter.com/frontendmentor</p>
+          <div>
+            <a href="https://shrtco.de/JLnLHY" target="_blank"
+              >shrtco.de/JLnLHY</a
+            >
             <button>Copiar!</button>
           </div>
         </div>
         <div class="resultadoBusca_item">
-          <p>https://www.frontendmentor.io</p>
+          <p>https://www.linkedin.com/company/frontend-mentor/</p>
           <div>
-            <p>https://rel.ink/k4lKyk</p>
+            <a href="https://www.linkedin.com/company/frontend-mentor/"
+              >shrtco.de/POdrLH</a
+            >
             <button>Copiar!</button>
           </div>
         </div>
@@ -41,7 +61,26 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      urlNormal: "",
+      urlHistory: [],
+    };
+  },
+  methods: {
+    encurtarLink() {
+      fetch(`https://api.shrtco.de/v2/shorten?url=${this.urlNormal}`)
+        .then((r) => r.json())
+        .then((r) => {
+          this.urlHistory.unshift({
+            urlAfter: this.urlNormal,
+            urlBefore: r.result.short_link,
+          });
+        });
+    },
+  },
+};
 </script>
 
 <style>
@@ -121,8 +160,11 @@ export default {};
   padding: 16px 0;
   padding-right: 26px;
 }
-.resultadoBusca_item div > p {
+.resultadoBusca_item div > a {
   color: #18a0fb;
+}
+.resultadoBusca_item div > a:hover {
+  text-decoration: underline;
 }
 .resultadoBusca_item + .resultadoBusca_item {
   margin-top: 16px;
@@ -148,9 +190,7 @@ export default {};
   .inputBusca {
     flex-wrap: wrap;
     gap: 30px;
-  }
-  .inputBusca button {
-    flex: 1;
+    padding: 24px;
   }
 }
 @media (max-width: 776px) {
@@ -158,6 +198,7 @@ export default {};
     flex-direction: column;
     align-items: initial;
     font-size: 16px;
+    gap: initial;
   }
   .resultadoBusca_item > p {
     padding: 12px 16px;
@@ -173,18 +214,21 @@ export default {};
     letter-spacing: -0.025em;
   }
 }
+@media (max-width: 625px) {
+  .inputBusca input,
+  .inputBusca button {
+    width: 100%;
+  }
+}
 @media (max-width: 550px) {
-  .inputBusca {
-    padding: 24px;
+  .inputBusca button {
+    font-size: 18px;
+    padding: 10px 44px;
   }
   .inputBusca input {
     font-size: 16px;
     padding: 8px 16px;
     min-width: 100px;
-  }
-  .inputBusca button {
-    font-size: 18px;
-    padding: 10px 44px;
   }
 }
 </style>
